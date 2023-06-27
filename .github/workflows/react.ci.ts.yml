@@ -1,0 +1,61 @@
+name: React.ts CI
+
+on:
+  push:
+    branches: ["dev"]
+  pull_request:
+    branches: ["dev"]
+
+jobs:
+  DEV-BUILD:
+    runs-on: ubuntu-latest
+    environment: DEV
+
+    strategy:
+      matrix:
+        node-version: [19.x]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Test
+        run: npm run test
+
+  DEV-DEPLOY:
+    needs: DEV-BUILD
+    runs-on: ubuntu-latest
+    environment: DEV
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Use Node.js 19.x
+        uses: actions/setup-node@v3
+        with:
+          node-version: 19.x
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      # - name: Deploy to Dev Environment
+      #   run: |
+      #     # Replace the command with your deployment script or commands
+      #     echo "Deploying to Dev environment..."

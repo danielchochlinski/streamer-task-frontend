@@ -7,6 +7,7 @@ interface TAppContext {
 const AppContext = createContext({});
 
 export const AppContextProvider = ({ children }: TAppContext) => {
+  
   return (
     <AppContext.Provider value={{}}>
       <div>{children}</div>

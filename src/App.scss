@@ -11,3 +11,10 @@ $secondary-color: #b73535c3;
   text-align: center;
   color: white;
 }
+
+//MUI auto control overwrite
+.MuiAutocomplete-root.MuiAutocomplete-variantOutlined.MuiAutocomplete-colorNeutral.MuiAutocomplete-sizeSm.MuiAutocomplete-formControl.css-1r9vwre-JoyAutocomplete-root {
+  background-color: transparent !important;
+  border: 1px solid $primary-color;
+  color: white;
+}

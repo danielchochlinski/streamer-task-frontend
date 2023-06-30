@@ -5,6 +5,7 @@ import { IStreamer } from "../../../types/types";
 import Card from "./Card";
 import styles from "./List.module.scss";
 import { Pagination } from "@mui/material";
+import Topbar from "../../../components/topbar/Topbar";
 const List = () => {
   const [data, setData] = useState<IStreamer[]>([]);
   const [page, setPage] = useState<number>(1);
@@ -14,7 +15,7 @@ const List = () => {
   const getData = async () => {
     try {
       const response = await axios.get(
-        `${BASE_URL}/api/streamers?page=${page}&limit=${limit}`
+        `${BASE_URL}/streamers?page=${page}&limit=${limit}`
       );
       setData(response.data.streamers);
       setTotalPages(response.data.totalPages);

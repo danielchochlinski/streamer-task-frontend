@@ -1,5 +1,4 @@
 import React, { createContext, ReactNode, useEffect, useState } from "react";
-import { StringOptionsWithoutImporter } from "sass";
 
 interface TAppContext {
   children: ReactNode;
@@ -12,6 +11,9 @@ interface AppContextValue {
   addFavouriteContext: (status: string) => void;
   removeFavouriteContext: (status: string) => void;
   seedFavouriteList: () => void;
+  openForm: boolean;
+  setOpenFormContext: (status: boolean) => void;
+  setOpenForm: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const AppContext = createContext<AppContextValue>({
@@ -21,6 +23,9 @@ const AppContext = createContext<AppContextValue>({
   addFavouriteContext: (_status: string) => {},
   removeFavouriteContext: (_status: string) => {},
   seedFavouriteList: () => {},
+  openForm: false,
+  setOpenFormContext: (_status: boolean) => {},
+  setOpenForm: () => {},
 });
 
 export const AppContextProvider = ({ children }: TAppContext) => {
@@ -74,6 +79,11 @@ export const AppContextProvider = ({ children }: TAppContext) => {
   useEffect(() => {
     seedFavouriteList();
   }, []);
+
+  const [openForm, setOpenForm] = useState<boolean>(false);
+  const setOpenFormContext = (status: boolean) => {
+    setOpenForm(status);
+  };
   return (
     <AppContext.Provider
       value={{
@@ -83,6 +93,9 @@ export const AppContextProvider = ({ children }: TAppContext) => {
         addFavouriteContext,
         removeFavouriteContext,
         seedFavouriteList,
+        openForm,
+        setOpenFormContext,
+        setOpenForm,
       }}
     >
       <div>{children}</div>

@@ -1,11 +1,11 @@
-@import url("../../App.scss");
+@import "../../App.scss";
 .container {
   display: flex;
   flex-direction: row;
   min-width: 200px;
   transition: margin-left 0.3s ease-in-out;
   margin-left: -150px;
-  border: 1px solid red;
+  border: 1px solid $primary-color;
   align-items: center;
   justify-content: space-between;
   .list {
@@ -20,15 +20,18 @@
     span {
       padding: 10px 0;
       width: 100%;
-      border-top: 1px solid red;
-      border-bottom: 1px solid red;
+      border-top: 1px solid $primary-color;
+      border-bottom: 1px solid $primary-color;
       border-top-right-radius: 8px;
       border-bottom-right-radius: 8px;
     }
   }
+}
+.buttons {
   svg {
     align-self: center;
-    margin: 0 3px;
+    margin: 3 3px;
+    cursor: pointer;
   }
 }
 
@@ -37,5 +40,5 @@
 }
 
 .closed {
-  margin-left: -171px;
+  margin-left: -159px;
 }

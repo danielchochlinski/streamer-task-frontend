@@ -1,7 +1,12 @@
 import React from "react";
 
+import List from "./components/List";
 const HomeView = () => {
-  return <div>HomeView</div>;
+  return (
+    <>
+      <List />
+    </>
+  );
 };
 
 export default HomeView;

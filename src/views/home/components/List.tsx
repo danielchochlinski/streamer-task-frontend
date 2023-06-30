@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import axios from "axios";
 import { BASE_URL } from "../../../config/config";
 import { IStreamer } from "../../../types/types";
@@ -11,7 +11,7 @@ const List = () => {
   const [limit] = useState<number>(10);
   const [totalPages, setTotalPages] = useState<number>(0);
 
-  const getData = async () => {
+  const getData = useCallback(async () => {
     try {
       const response = await axios.get(
         `${BASE_URL}/streamers?page=${page}&limit=${limit}`
@@ -21,11 +21,11 @@ const List = () => {
     } catch (err) {
       console.error(err);
     }
-  };
+  }, [page, limit]);
 
   useEffect(() => {
     getData();
-  }, [page, limit, getData]);
+  }, [getData]);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,

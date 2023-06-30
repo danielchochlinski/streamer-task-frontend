@@ -80,7 +80,11 @@ const Card: React.FC<ICard> = ({ streamer, i }) => {
                 size="sm"
                 key={`${el}+${i}`}
               >
-                <a href="https://youtu.be/NNC0kIzM1Fo?t=39" target="_blank">
+                <a
+                  href="https://youtu.be/NNC0kIzM1Fo?t=39"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <img src={imageFunction(el)} alt={el} />
                 </a>
               </Tooltip>

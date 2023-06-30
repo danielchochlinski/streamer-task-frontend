@@ -5,11 +5,10 @@ import { IStreamer } from "../../../types/types";
 import Card from "./Card";
 import styles from "./List.module.scss";
 import { Pagination } from "@mui/material";
-import Topbar from "../../../components/topbar/Topbar";
 const List = () => {
   const [data, setData] = useState<IStreamer[]>([]);
   const [page, setPage] = useState<number>(1);
-  const [limit, setLimit] = useState<number>(10);
+  const [limit] = useState<number>(10);
   const [totalPages, setTotalPages] = useState<number>(0);
 
   const getData = async () => {
@@ -26,7 +25,7 @@ const List = () => {
 
   useEffect(() => {
     getData();
-  }, [page, limit]);
+  }, [page, limit, getData]);
 
   const handlePageChange = (
     event: React.ChangeEvent<unknown>,

@@ -18,6 +18,7 @@ const Navbar = () => {
       className={`${styles.container} ${openNav ? styles.open : styles.closed}`}
     >
       <div className={styles.list}>
+        <span>Your Favourites</span>
         {ctxApp.favouriteList.map((el) => (
           <span>{el}</span>
         ))}

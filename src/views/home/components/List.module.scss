@@ -1,0 +1,24 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+
+  .list_contaner {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 15px;
+    overflow: scroll;
+  }
+}
+
+.pagination .MuiPaginationItem-root {
+  color: white;
+}
+
+.pagination .MuiPaginationItem-root.Mui-selected {
+  background-color: white;
+  color: black;
+}

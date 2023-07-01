@@ -14,6 +14,10 @@ interface AppContextValue {
   openForm: boolean;
   setOpenFormContext: (status: boolean) => void;
   setOpenForm: React.Dispatch<React.SetStateAction<boolean>>;
+  setLoadingContext: (status: boolean) => void;
+  loading: boolean;
+  setForceReloadContext: () => void;
+  forceReload: boolean;
 }
 
 const AppContext = createContext<AppContextValue>({
@@ -26,6 +30,10 @@ const AppContext = createContext<AppContextValue>({
   openForm: false,
   setOpenFormContext: (_status: boolean) => {},
   setOpenForm: () => {},
+  setLoadingContext: () => {},
+  loading: false,
+  setForceReloadContext: () => {},
+  forceReload: false,
 });
 
 export const AppContextProvider = ({ children }: TAppContext) => {
@@ -84,6 +92,16 @@ export const AppContextProvider = ({ children }: TAppContext) => {
   const setOpenFormContext = (status: boolean) => {
     setOpenForm(status);
   };
+
+  const [loading, setLoading] = useState<boolean>(false);
+  const setLoadingContext = (status: boolean) => {
+    setLoading(status);
+  };
+
+  const [forceReload, setForceReload] = useState<boolean>(false);
+  const setForceReloadContext = () => {
+    setForceReload(!forceReload);
+  };
   return (
     <AppContext.Provider
       value={{
@@ -96,6 +114,10 @@ export const AppContextProvider = ({ children }: TAppContext) => {
         openForm,
         setOpenFormContext,
         setOpenForm,
+        setLoadingContext,
+        loading,
+        setForceReloadContext,
+        forceReload,
       }}
     >
       <div>{children}</div>

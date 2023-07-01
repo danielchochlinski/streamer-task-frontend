@@ -4,7 +4,7 @@ export interface IStreamer {
   name: string;
   description: string;
   platforms: string[];
-  votes: {};
+  votes: { up: number; down: number };
   popularity: number;
   image: any;
 }

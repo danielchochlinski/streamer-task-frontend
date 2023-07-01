@@ -1,0 +1,69 @@
+@import "../../App.scss";
+.container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 305px;
+  .platform {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 30px;
+    p {
+      position: absolute;
+      bottom: -45px;
+      color: $primary-color;
+    }
+  }
+  input {
+    width: 100%;
+  }
+}
+.upload_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  svg {
+    color: $primary-color;
+    cursor: pointer;
+  }
+}
+.upload_file {
+  width: 85%;
+  box-sizing: border-box;
+  border: 1px solid $primary-color;
+  display: inline-block;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14;
+  overflow: scroll;
+  transition: 0.2s ease-in-out;
+  &:focus {
+    border: 1px solid $primary-color;
+  }
+  span {
+    color: rgb(145 145 146);
+  }
+}
+input[type="file"] {
+  display: none;
+}
+
+.hint {
+  position: absolute;
+  bottom: 5px;
+  max-width: 305px;
+  background-color: rgb(173, 219, 255);
+  opacity: 0;
+  transition: 0.2s ease-in-out;
+  padding: 5px;
+  border-radius: 8px;
+  z-index: -1;
+}
+.visible {
+  opacity: 1;
+  z-index: 2;
+}

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import styles from "./MainTemplate.module.scss";
 import Navbar from "../components/navbar/Navbar";
 import BasicModal from "../components/modal/Modal";
-import Form from "../views/home/components/Form";
+import Form from "../components/form/Form";
 import AppContext from "../context/AppContext";
 import Topbar from "../components/topbar/Topbar";
 

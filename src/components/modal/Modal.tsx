@@ -18,8 +18,14 @@ export default function BasicModal({
       aria-labelledby="global modal"
       aria-describedby="universal modal"
       open={openModal}
+      disableAutoFocus
       onClose={() => setOpenModal(false)}
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        outline: "none",
+      }}
     >
       <Sheet
         variant="outlined"

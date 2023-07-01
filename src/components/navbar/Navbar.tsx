@@ -5,10 +5,17 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AppContext from "../../context/AppContext";
 import AddIcon from "@mui/icons-material/Add";
 import { Tooltip } from "@mui/joy";
+import RemoveIcon from "@mui/icons-material/Remove";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import HomeIcon from "@mui/icons-material/Home";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = () => {
-  const [openNav, setOpenNav] = useState<boolean>(false);
   const ctxApp = useContext(AppContext);
+  const navigation = useNavigate();
+
+  const [openNav, setOpenNav] = useState<boolean>(false);
+
   const handleNavbar = () => {
     setOpenNav(!openNav);
   };
@@ -20,19 +27,33 @@ const Navbar = () => {
       <div className={styles.list}>
         <span>Your Favourites</span>
         {ctxApp.favouriteList.map((el) => (
-          <span>{el}</span>
+          <div className={styles.favourites}>
+            <span onClick={() => navigation(`/streamer/${el}`)}>{el}</span>
+            <RemoveIcon onClick={() => ctxApp.removeFavouriteContext(el)} />
+          </div>
         ))}
       </div>
 
       <div className={styles.buttons}>
-        {openNav ? (
-          <FavoriteIcon onClick={() => handleNavbar()} />
-        ) : (
-          <FavoriteBorderIcon onClick={() => handleNavbar()} />
-        )}
-        <Tooltip title={"Add Streamer"} size="sm">
-          <AddIcon onClick={() => ctxApp.setOpenFormContext(true)} />
-        </Tooltip>
+        <div className={styles.top}>
+          <ArrowBackIosNewIcon onClick={() => navigation(-1)} />
+          <HomeIcon onClick={() => navigation("/")} />
+        </div>
+        <div className={styles.center}>
+          {openNav ? (
+            <FavoriteIcon
+              style={{ color: "#c30065" }}
+              onClick={() => handleNavbar()}
+            />
+          ) : (
+            <Tooltip title="Favourites" size="sm">
+              <FavoriteBorderIcon onClick={() => handleNavbar()} />
+            </Tooltip>
+          )}
+          <Tooltip title={"Add Streamer"} size="sm">
+            <AddIcon onClick={() => ctxApp.setOpenFormContext(true)} />
+          </Tooltip>
+        </div>
       </div>
     </div>
   );

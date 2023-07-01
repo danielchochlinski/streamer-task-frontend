@@ -24,7 +24,7 @@ const Topbar = () => {
   const [data, setData] = React.useState([]);
   const getArtists = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/streamers`);
+      const response = await axios.get(`${BASE_URL}/streamers-names`);
       setData(response.data.streamers);
     } catch (err) {
       console.error(err);
@@ -32,7 +32,7 @@ const Topbar = () => {
   };
   useEffect(() => {
     getArtists();
-  }, []);
+  }, [ctxApp.forceReload]);
   return (
     <div className={styles.container}>
       <FormControl id="auto complete input">

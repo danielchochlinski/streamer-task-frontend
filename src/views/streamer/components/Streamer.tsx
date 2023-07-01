@@ -56,7 +56,7 @@ const Streamer = () => {
 
   useEffect(() => {
     getStreamer();
-  }, [id]);
+  }, [id]); // eslint-disable-line
 
   const imageSrc = data
     ? `data:image/jpeg;base64,${arrayBufferToBase64(data?.image?.data)}`

@@ -6,6 +6,7 @@
   padding: 15px;
   height: 100%;
   width: 100%;
+  overflow: scroll;
 
   .list_contaner {
     display: flex;
@@ -18,13 +19,4 @@
     max-width: 900px;
     width: 100%;
   }
-}
-
-.pagination .MuiPaginationItem-root {
-  color: white;
-}
-
-.pagination .MuiPaginationItem-root.Mui-selected {
-  background-color: white;
-  color: black;
 }

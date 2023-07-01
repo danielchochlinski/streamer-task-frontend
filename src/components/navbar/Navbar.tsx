@@ -9,6 +9,7 @@ import RemoveIcon from "@mui/icons-material/Remove";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import HomeIcon from "@mui/icons-material/Home";
 import { useNavigate } from "react-router-dom";
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 
 const Navbar = () => {
   const ctxApp = useContext(AppContext);
@@ -19,6 +20,9 @@ const Navbar = () => {
   const handleNavbar = () => {
     setOpenNav(!openNav);
   };
+  const autocompleteSx = ctxApp.dataController
+    ? { color: "#c30065", transition: "0.2s ease-in-out" }
+    : { color: "white", transition: "0.2s ease-in-out" };
 
   return (
     <div
@@ -52,6 +56,12 @@ const Navbar = () => {
           )}
           <Tooltip title={"Add Streamer"} size="sm">
             <AddIcon onClick={() => ctxApp.setOpenFormContext(true)} />
+          </Tooltip>
+          <Tooltip title={"Popular Streamers"} size="sm">
+            <LocalFireDepartmentIcon
+              sx={autocompleteSx}
+              onClick={() => ctxApp.setDataControllerContext()}
+            />
           </Tooltip>
         </div>
       </div>

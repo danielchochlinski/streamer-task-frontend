@@ -18,6 +18,8 @@ interface AppContextValue {
   loading: boolean;
   setForceReloadContext: () => void;
   forceReload: boolean;
+  setDataControllerContext: () => void;
+  dataController: boolean;
 }
 
 const AppContext = createContext<AppContextValue>({
@@ -34,6 +36,8 @@ const AppContext = createContext<AppContextValue>({
   loading: false,
   setForceReloadContext: () => {},
   forceReload: false,
+  setDataControllerContext: () => {},
+  dataController: false,
 });
 
 export const AppContextProvider = ({ children }: TAppContext) => {
@@ -88,19 +92,28 @@ export const AppContextProvider = ({ children }: TAppContext) => {
     seedFavouriteList();
   }, []);
 
+  //controls add streamer form
   const [openForm, setOpenForm] = useState<boolean>(false);
   const setOpenFormContext = (status: boolean) => {
     setOpenForm(status);
   };
 
+  //global loading state
   const [loading, setLoading] = useState<boolean>(false);
   const setLoadingContext = (status: boolean) => {
     setLoading(status);
   };
 
+  //state to force data reload between changes eg adding streamer
   const [forceReload, setForceReload] = useState<boolean>(false);
   const setForceReloadContext = () => {
     setForceReload(!forceReload);
+  };
+
+  //state to control which streamers are fetch normal | popular
+  const [dataController, setDataController] = useState<boolean>(false);
+  const setDataControllerContext = () => {
+    setDataController(!dataController);
   };
   return (
     <AppContext.Provider
@@ -118,6 +131,8 @@ export const AppContextProvider = ({ children }: TAppContext) => {
         loading,
         setForceReloadContext,
         forceReload,
+        setDataControllerContext,
+        dataController,
       }}
     >
       <div>{children}</div>

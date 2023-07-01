@@ -133,10 +133,9 @@ button.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.Mu
 .swiper-slide {
   text-align: center;
   font-size: 18px;
-  background: #fff;
 
   /* Center slide text vertically */
-  display: flex;
+  display: flex !important;
   justify-content: center;
   align-items: center;
 }
@@ -146,4 +145,9 @@ button.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.Mu
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+//mui modal
+.MuiModal-backdrop.css-114iouz-JoyModal-backdrop {
+  background-color: rgba(0, 0, 0, 0.3);
 }

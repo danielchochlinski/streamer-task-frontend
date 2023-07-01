@@ -16,6 +16,7 @@
   overflow: hidden;
   transition: 0.2s all;
   max-height: 320px;
+  cursor: pointer;
 
   hr {
     width: 100%;
@@ -164,4 +165,20 @@
 
 .no_favourite {
   transition: color 0.3s ease-in-out; // Add transition property for color
+}
+
+@media screen and (max-width: 767px) {
+  .nft {
+    min-width: unset;
+    max-width: 500px;
+    max-height: 500px;
+    width: 100%;
+    margin: 60px;
+    height: 100%;
+    .main {
+      .tokenImage {
+        height: 320px;
+      }
+    }
+  }
 }

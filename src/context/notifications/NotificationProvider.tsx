@@ -7,7 +7,9 @@ interface NotificationProviderProps {
 }
 
 const int = {};
-const NotificationContext = createContext(int as Dispatch<ActionType>);
+const NotificationContext = createContext<Dispatch<ActionType>>(() => {
+  throw new Error("NotificationContext dispatch function not provided");
+});
 
 const NotificationProvider = (props: NotificationProviderProps) => {
   const [state, dispatch] = useReducer(

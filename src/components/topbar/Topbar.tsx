@@ -9,6 +9,7 @@ import axios from "axios";
 import AppContext from "../../context/AppContext";
 import { IStreamer } from "../../types/types";
 import styles from "./Topbar.module.scss";
+import { useNavigate } from "react-router-dom";
 const inputStyle = {
   outline: "none",
   width: "300px",
@@ -16,14 +17,14 @@ const inputStyle = {
 };
 
 const filter = createFilterOptions<any>();
-
 const Topbar = () => {
   const ctxApp = useContext(AppContext);
+  const navigation = useNavigate();
   const [value, setValue] = React.useState<IStreamer | null>(null);
   const [data, setData] = React.useState([]);
   const getArtists = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/streamers`);
+      const response = await axios.get(`${BASE_URL}/streamers-names`);
       setData(response.data.streamers);
     } catch (err) {
       console.error(err);
@@ -31,7 +32,7 @@ const Topbar = () => {
   };
   useEffect(() => {
     getArtists();
-  }, []);
+  }, [ctxApp.forceReload]);
   return (
     <div className={styles.container}>
       <FormControl id="auto complete input">
@@ -49,7 +50,7 @@ const Topbar = () => {
                 name: newValue.inputValue,
                 description: "",
                 platforms: [],
-                votes: {},
+                votes: { up: 0, down: 0 },
                 popularity: 0,
                 image: null,
               };
@@ -94,11 +95,11 @@ const Topbar = () => {
           renderOption={(props, option) => (
             <AutocompleteOption
               {...props}
-              onClick={() => ctxApp.setOpenFormContext(true)}
+              onClick={() => navigation(`/streamer/${option.name}`)}
             >
               {option.name?.startsWith('Add "') && (
                 <ListItemDecorator>
-                  <Add />
+                  <Add onClick={() => ctxApp.setOpenFormContext(true)} />
                 </ListItemDecorator>
               )}
               {option.name}

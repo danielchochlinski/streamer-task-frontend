@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import { IStreamer } from "../../../types/types";
 import styles from "./Card.module.scss";
 import youtubeImg from "../../../assets/youtube.png";
@@ -12,15 +12,21 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { useNavigate } from "react-router-dom";
 import AppContext from "../../../context/AppContext";
-
+import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
+import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
+import { BASE_URL } from "../../../config/config";
+import axios from "axios";
 interface ICard {
   streamer: IStreamer;
   i: number;
 }
 
 const Card: React.FC<ICard> = ({ streamer, i }) => {
+  const { _id: id, name, platforms, image, votes } = streamer;
   const ctxApp = useContext(AppContext);
-  const { _id: id, name, platforms, image } = streamer;
+  const [voteUp, setVoteUp] = useState<number>(votes?.up);
+  const [voteDown, setVoteDown] = useState<number>(votes?.down);
+
   const navigate = useNavigate();
 
   const imageFunction = (platform: string): string => {
@@ -47,15 +53,31 @@ const Card: React.FC<ICard> = ({ streamer, i }) => {
   };
 
   const isFavourite = ctxApp.favouriteList.includes(name);
+  const vote = async (
+    e: React.MouseEvent<SVGSVGElement, MouseEvent>,
+    voteType: string
+  ) => {
+    e.stopPropagation(); // Stop event propagation
+    try {
+      const response = await axios.put(`${BASE_URL}/streamer/${id}`, {
+        voteType,
+      });
+      const { votes: votesResponse } = response.data;
+      setVoteUp(votesResponse?.up);
+      setVoteDown(votesResponse?.down);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <>
-      <div className={styles.nft} onClick={() => navigate(`/streamer/${id}`)}>
+      <div className={styles.nft} onClick={() => navigate(`/streamer/${name}`)}>
         <div className={styles.main}>
           <img
             className={styles.tokenImage}
             src={`data:image/jpeg;base64,${image}`}
-            alt="NFT"
+            alt="card"
           />
 
           <h2>{name}</h2>
@@ -89,6 +111,16 @@ const Card: React.FC<ICard> = ({ streamer, i }) => {
                 </a>
               </Tooltip>
             ))}
+          </div>
+          <div className={styles.votes}>
+            <div>
+              <ThumbUpOffAltIcon onClick={(e) => vote(e, "up")} />
+              <span>{voteUp}</span>
+            </div>
+            <div>
+              <ThumbDownOffAltIcon onClick={(e) => vote(e, "down")} />
+              <span>{voteDown}</span>
+            </div>
           </div>
           <hr />
         </div>

@@ -1,6 +1,11 @@
 import React, { ReactNode } from "react";
 
-type ComponentType = React.ComponentType<{ children: ReactNode }>;
+type ComponentType = React.ComponentType<any>;
+
+interface ComposeProps {
+  components?: ComponentType[];
+  children: React.ReactNode;
+}
 
 interface ComposeProps {
   components?: ComponentType[];

@@ -1,14 +1,15 @@
+@import "../../App.scss";
 .center {
-  height: 100vh;
+  height: 300px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #000;
+  background: transparent;
 }
 .wave {
   width: 5px;
   height: 100px;
-  background: linear-gradient(45deg, cyan, #fff);
+  background: linear-gradient(45deg, $primary-color, #fff);
   margin: 10px;
   animation: wave 1s linear infinite;
   border-radius: 20px;

@@ -5,13 +5,24 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import AppContext from "../../context/AppContext";
 import AddIcon from "@mui/icons-material/Add";
 import { Tooltip } from "@mui/joy";
+import RemoveIcon from "@mui/icons-material/Remove";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import HomeIcon from "@mui/icons-material/Home";
+import { useNavigate } from "react-router-dom";
+import LocalFireDepartmentIcon from "@mui/icons-material/LocalFireDepartment";
 
 const Navbar = () => {
-  const [openNav, setOpenNav] = useState<boolean>(false);
   const ctxApp = useContext(AppContext);
+  const navigation = useNavigate();
+
+  const [openNav, setOpenNav] = useState<boolean>(false);
+
   const handleNavbar = () => {
     setOpenNav(!openNav);
   };
+  const autocompleteSx = ctxApp.dataController
+    ? { color: "#c30065", transition: "0.2s ease-in-out" }
+    : { color: "white", transition: "0.2s ease-in-out" };
 
   return (
     <div
@@ -19,20 +30,40 @@ const Navbar = () => {
     >
       <div className={styles.list}>
         <span>Your Favourites</span>
-        {ctxApp.favouriteList.map((el) => (
-          <span>{el}</span>
+        {ctxApp.favouriteList.map((el: string, i: number) => (
+          <div key={`${el}+${i}+navbar`} className={styles.favourites}>
+            <span onClick={() => navigation(`/streamer/${el}`)}>{el}</span>
+            <RemoveIcon onClick={() => ctxApp.removeFavouriteContext(el)} />
+          </div>
         ))}
       </div>
 
       <div className={styles.buttons}>
-        {openNav ? (
-          <FavoriteIcon onClick={() => handleNavbar()} />
-        ) : (
-          <FavoriteBorderIcon onClick={() => handleNavbar()} />
-        )}
-        <Tooltip title={"Add Streamer"} size="sm">
-          <AddIcon onClick={() => ctxApp.setOpenFormContext(true)} />
-        </Tooltip>
+        <div className={styles.top}>
+          <ArrowBackIosNewIcon onClick={() => navigation(-1)} />
+          <HomeIcon onClick={() => navigation("/")} />
+        </div>
+        <div className={styles.center}>
+          {openNav ? (
+            <FavoriteIcon
+              style={{ color: "#c30065" }}
+              onClick={() => handleNavbar()}
+            />
+          ) : (
+            <Tooltip title="Favourites" size="sm">
+              <FavoriteBorderIcon onClick={() => handleNavbar()} />
+            </Tooltip>
+          )}
+          <Tooltip title={"Add Streamer"} size="sm">
+            <AddIcon onClick={() => ctxApp.setOpenFormContext(true)} />
+          </Tooltip>
+          <Tooltip title={"Popular Streamers"} size="sm">
+            <LocalFireDepartmentIcon
+              sx={autocompleteSx}
+              onClick={() => ctxApp.setDataControllerContext()}
+            />
+          </Tooltip>
+        </div>
       </div>
     </div>
   );

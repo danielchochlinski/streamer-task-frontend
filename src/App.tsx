@@ -1,4 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
+import * as THREE from "three"; // eslint-disable-line
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import TOPOLOGY from "vanta/dist/vanta.topology.min";
 

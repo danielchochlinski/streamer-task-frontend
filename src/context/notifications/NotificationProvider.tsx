@@ -6,7 +6,6 @@ interface NotificationProviderProps {
   children: JSX.Element;
 }
 
-const int = {};
 const NotificationContext = createContext<Dispatch<ActionType>>(() => {
   throw new Error("NotificationContext dispatch function not provided");
 });

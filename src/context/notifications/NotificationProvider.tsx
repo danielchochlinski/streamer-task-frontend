@@ -6,9 +6,9 @@ interface NotificationProviderProps {
   children: JSX.Element;
 }
 
-const NotificationContext = createContext<Dispatch<ActionType>>(() => {
-  throw new Error("NotificationContext dispatch function not provided");
-});
+const NotificationContext = createContext<Dispatch<ActionType> | undefined>(
+  undefined
+);
 
 const NotificationProvider = (props: NotificationProviderProps) => {
   const [state, dispatch] = useReducer(
@@ -36,10 +36,14 @@ const NotificationProvider = (props: NotificationProviderProps) => {
     </NotificationContext.Provider>
   );
 };
-export default NotificationProvider;
 
+export default NotificationProvider;
 export const useNotification = () => {
   const dispatch = useContext(NotificationContext);
+
+  if (!dispatch) {
+    throw new Error("NotificationContext dispatch function not provided");
+  }
 
   return (props: StateType) => {
     dispatch({
@@ -51,6 +55,7 @@ export const useNotification = () => {
     });
   };
 };
+
 export const uniqueID = () => {
   const uniq = "id" + new Date().getTime();
   return uniq;

@@ -46,8 +46,6 @@ const HomeView = () => {
       console.error(err);
     }
   }, [page, limit, ctxApp.forceReload, ctxApp.dataController]); // eslint-disable-line
-  const controller = ctxApp.dataController;
-  console.log({ data, controller });
   useEffect(() => {
     getData();
   }, [getData]);

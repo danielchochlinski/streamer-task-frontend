@@ -30,8 +30,8 @@ const Navbar = () => {
     >
       <div className={styles.list}>
         <span>Your Favourites</span>
-        {ctxApp.favouriteList.map((el) => (
-          <div className={styles.favourites}>
+        {ctxApp.favouriteList.map((el: string, i: number) => (
+          <div key={`${el}+${i}+navbar`} className={styles.favourites}>
             <span onClick={() => navigation(`/streamer/${el}`)}>{el}</span>
             <RemoveIcon onClick={() => ctxApp.removeFavouriteContext(el)} />
           </div>

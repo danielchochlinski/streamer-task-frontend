@@ -13,7 +13,7 @@ import { useNavigate } from "react-router-dom";
 const inputStyle = {
   outline: "none",
   width: "300px",
-  border: "none",
+  border: "1px solid rgb(9, 107, 222)",
 };
 
 const filter = createFilterOptions<any>();
@@ -33,6 +33,7 @@ const Topbar = () => {
   useEffect(() => {
     getArtists();
   }, [ctxApp.forceReload]);
+
   return (
     <div className={styles.container}>
       <FormControl id="auto complete input">

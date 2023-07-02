@@ -73,16 +73,25 @@ const HomeView = () => {
 
   return (
     <>
+      {!ctxApp.dataController ? (
+        <h2>Streamers</h2>
+      ) : (
+        <h2>Most popular streamers</h2>
+      )}
       {isMobile ? <MobileList data={data} /> : <List data={data} />}
-      <div className={styles.pagination}>
-        <Pagination
-          count={totalPages}
-          page={page}
-          onChange={handlePageChange}
-          variant="outlined"
-          color="secondary"
-        />
-      </div>
+      {!ctxApp.dataController ? (
+        <div className={styles.pagination}>
+          <Pagination
+            count={totalPages}
+            page={page}
+            onChange={handlePageChange}
+            variant="outlined"
+            color="primary"
+          />
+        </div>
+      ) : (
+        <></>
+      )}
     </>
   );
 };

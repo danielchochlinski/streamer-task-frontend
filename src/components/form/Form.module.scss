@@ -55,12 +55,13 @@ input[type="file"] {
 .hint {
   position: absolute;
   bottom: 5px;
-  max-width: 305px;
+  max-width: 300px;
   background-color: rgb(173, 219, 255);
   opacity: 0;
   transition: 0.2s ease-in-out;
   padding: 5px;
   border-radius: 8px;
+
   z-index: -1;
 }
 .visible {

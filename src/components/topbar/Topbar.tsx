@@ -95,7 +95,13 @@ const Topbar = () => {
           renderOption={(props, option) => (
             <AutocompleteOption
               {...props}
-              onClick={() => navigation(`/streamer/${option.name}`)}
+              onClick={() => {
+                if (option.name?.startsWith('Add "')) {
+                  ctxApp.setOpenFormContext(true);
+                } else {
+                  navigation(`/app/streamer/${option.name}`);
+                }
+              }}
             >
               {option.name?.startsWith('Add "') && (
                 <ListItemDecorator>

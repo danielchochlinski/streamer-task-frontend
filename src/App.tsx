@@ -1,13 +1,19 @@
 import React, { useEffect, useRef, useState } from "react";
 import * as THREE from "three"; // eslint-disable-line
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
 import TOPOLOGY from "vanta/dist/vanta.topology.min";
 
 import "./App.scss";
 import HomeView from "./views/home/HomeView";
 import StreamerView from "./views/streamer/StreamerView";
 import MainTemplate from "./templetes/MainTemplate";
+import LandingPage from "./views/landing/LandingPage";
 
 function App() {
   const [vantaEffect, setVantaEffect] = useState<any>(null);
@@ -37,19 +43,16 @@ function App() {
     <div className="App" ref={myRef}>
       <Router>
         <Routes>
+          <Route path="/" element={<Navigate to="/home" replace />} />
+          <Route path="/home" element={<LandingPage />} />
           <Route
-            path="/"
+            path="/app/*"
             element={
               <MainTemplate>
-                <HomeView />
-              </MainTemplate>
-            }
-          />
-          <Route
-            path={"/streamer/:id"}
-            element={
-              <MainTemplate>
-                <StreamerView />
+                <Routes>
+                  <Route path="/" element={<HomeView />} />
+                  <Route path="/streamer/:id" element={<StreamerView />} />
+                </Routes>
               </MainTemplate>
             }
           />

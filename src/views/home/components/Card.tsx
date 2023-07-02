@@ -72,7 +72,7 @@ const Card: React.FC<ICard> = ({ streamer, i }) => {
 
   return (
     <>
-      <div className={styles.nft} onClick={() => navigate(`/streamer/${name}`)}>
+      <div className={styles.nft} onClick={() => navigate(`/app/streamer/${name}`)}>
         <div className={styles.main}>
           <img
             className={styles.tokenImage}

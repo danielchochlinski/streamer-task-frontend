@@ -12,12 +12,6 @@ $secondary-color: #b73535c3;
   color: white;
 }
 
-//MUI auto control overwrite
-.MuiAutocomplete-root.MuiAutocomplete-variantOutlined.MuiAutocomplete-colorNeutral.MuiAutocomplete-sizeSm.MuiAutocomplete-formControl.css-1r9vwre-JoyAutocomplete-root {
-  background-color: transparent !important;
-  border: 1px solid $primary-color;
-  color: white;
-}
 input#auto\ complete\ input {
   text-align: center;
 }
@@ -114,14 +108,6 @@ input#auto\ complete\ input {
   right: 10px;
   width: 300px;
   z-index: 99;
-}
-
-//mui pagination overwrite
-button.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.MuiPaginationItem-outlined.MuiPaginationItem-circular.MuiPaginationItem-outlinedPrimary.Mui-selected.MuiPaginationItem-page.css-1y7coo4-MuiButtonBase-root-MuiPaginationItem-root {
-  color: white !important;
-}
-button.MuiButtonBase-root.MuiPaginationItem-root.MuiPaginationItem-sizeMedium.MuiPaginationItem-outlined.MuiPaginationItem-circular.MuiPaginationItem-outlinedPrimary.MuiPaginationItem-page.css-1y7coo4-MuiButtonBase-root-MuiPaginationItem-root {
-  color: white !important;
 }
 
 //swiper

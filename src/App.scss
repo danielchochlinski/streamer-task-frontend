@@ -119,6 +119,7 @@ input#auto\ complete\ input {
 .swiper-slide {
   text-align: center;
   font-size: 18px;
+  overflow: scroll;
 
   /* Center slide text vertically */
   display: flex !important;

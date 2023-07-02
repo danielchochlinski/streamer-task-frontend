@@ -11,6 +11,7 @@ interface IList {
 }
 const List = ({ data }: IList) => {
   const ctxApp = useContext(AppContext);
+  console.log(data);
   return (
     <div className={styles.container}>
       {ctxApp.loading ? (

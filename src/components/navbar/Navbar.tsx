@@ -32,7 +32,7 @@ const Navbar = () => {
         <span>Your Favourites</span>
         {ctxApp.favouriteList.map((el: string, i: number) => (
           <div key={`${el}+${i}+navbar`} className={styles.favourites}>
-            <span onClick={() => navigation(`/streamer/${el}`)}>{el}</span>
+            <span onClick={() => navigation(`/app/streamer/${el}`)}>{el}</span>
             <RemoveIcon onClick={() => ctxApp.removeFavouriteContext(el)} />
           </div>
         ))}
@@ -41,7 +41,7 @@ const Navbar = () => {
       <div className={styles.buttons}>
         <div className={styles.top}>
           <ArrowBackIosNewIcon onClick={() => navigation(-1)} />
-          <HomeIcon onClick={() => navigation("/")} />
+          <HomeIcon onClick={() => navigation("/app")} />
         </div>
         <div className={styles.center}>
           {openNav ? (

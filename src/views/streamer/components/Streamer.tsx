@@ -25,15 +25,6 @@ const Streamer = () => {
   const { id } = useParams();
   const [data, setData] = useState<IStreamer | null>(null);
   const notification = useNotification();
-  const arrayBufferToBase64 = (buffer: ArrayBuffer) => {
-    let binary = "";
-    const bytes = new Uint8Array(buffer);
-    const len = bytes.byteLength;
-    for (let i = 0; i < len; i++) {
-      binary += String.fromCharCode(bytes[i]);
-    }
-    return btoa(binary);
-  };
 
   const getStreamer = async () => {
     try {
@@ -57,10 +48,6 @@ const Streamer = () => {
   useEffect(() => {
     getStreamer();
   }, [id]); // eslint-disable-line
-
-  const imageSrc = data
-    ? `data:image/jpeg;base64,${arrayBufferToBase64(data?.image?.data)}`
-    : "";
 
   const vote = async (
     e: React.MouseEvent<SVGSVGElement, MouseEvent>,
@@ -93,7 +80,7 @@ const Streamer = () => {
       ) : (
         <article className={styles.profile}>
           <div className={styles.profile_image}>
-            <img src={imageSrc} alt="streamer" />
+            <img src={`data:image/jpeg;base64,${data?.image}`} alt="streame" />
           </div>
           <h2 className={styles.profile_username}>{data?.name}</h2>
           <p>{data?.description}</p>

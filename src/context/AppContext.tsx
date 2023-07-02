@@ -119,11 +119,12 @@ export const AppContextProvider = ({ children }: TAppContext) => {
   const setDataControllerContext = () => {
     setDataController(!dataController);
   };
-
+  //controlls navbar
   const [openNav, setOpenNav] = useState<boolean>(false);
   const setOpenNavContext = () => {
     setOpenNav(!openNav);
   };
+
   return (
     <AppContext.Provider
       value={{

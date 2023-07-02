@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import styles from "./Navbar.module.scss";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
@@ -22,6 +22,17 @@ const Navbar = () => {
     ? { color: "#c30065", transition: "0.2s ease-in-out" }
     : { color: "white", transition: "0.2s ease-in-out" };
 
+  useEffect(() => {
+    if (ctxApp.highlightFavourite === true) {
+      const timer = setTimeout(() => {
+        ctxApp.setHighlightFavouriteContext(false);
+      }, 500);
+
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [ctxApp.highlightFavourite]);
   return (
     <div
       className={`${styles.container} ${
@@ -48,10 +59,22 @@ const Navbar = () => {
             <FavoriteIcon
               style={{ color: "#c30065" }}
               onClick={() => handleNavbar()}
+              className={
+                ctxApp.highlightFavourite
+                  ? styles.highlightStyle
+                  : styles.normalStyle
+              }
             />
           ) : (
             <Tooltip title="Favourites" size="sm">
-              <FavoriteBorderIcon onClick={() => handleNavbar()} />
+              <FavoriteBorderIcon
+                onClick={() => handleNavbar()}
+                className={
+                  ctxApp.highlightFavourite
+                    ? styles.highlightStyle
+                    : styles.normalStyle
+                }
+              />
             </Tooltip>
           )}
           <Tooltip title={"Add Streamer"} size="sm">

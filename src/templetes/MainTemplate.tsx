@@ -11,13 +11,18 @@ interface TMainTemplate {
 }
 const MainTemplate = ({ children }: TMainTemplate) => {
   const ctxApp = useContext(AppContext);
-
+  console.log(ctxApp.openNav);
   return (
     <>
       <div className={styles.container}>
         <Navbar />
-        <div className={styles.inner_container}>
+        <div
+          className={`${styles.inner_container} ${
+            ctxApp.openNav ? styles.hide : styles.open
+          }`}
+        >
           <Topbar />
+
           {children}
         </div>
       </div>

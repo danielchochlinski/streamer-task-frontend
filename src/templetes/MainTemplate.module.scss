@@ -15,5 +15,15 @@
     overflow: scroll;
     align-items: center;
     width: 100%;
+    transition: 0.3s ease-in-out;
+    opacity: 1;
+  }
+}
+
+@media screen and (max-width: 560px) {
+  .container {
+    .hide {
+      opacity: 0;
+    }
   }
 }

@@ -12,6 +12,12 @@ import axios from "axios";
 import { BASE_URL } from "../../config/config";
 import { Pagination } from "@mui/material";
 import styles from "./HomeView.module.scss";
+const paginationStyle = {
+  color: "white",
+  "& .MuiPaginationItem-root": {
+    color: "white",
+  },
+};
 const HomeView = () => {
   const ctxApp = useContext(AppContext);
   const [data, setData] = useState<IStreamer[]>([]);
@@ -82,6 +88,7 @@ const HomeView = () => {
       {!ctxApp.dataController ? (
         <div className={styles.pagination}>
           <Pagination
+            sx={paginationStyle}
             count={totalPages}
             page={page}
             onChange={handlePageChange}

@@ -15,10 +15,8 @@ const Navbar = () => {
   const ctxApp = useContext(AppContext);
   const navigation = useNavigate();
 
-  const [openNav, setOpenNav] = useState<boolean>(false);
-
   const handleNavbar = () => {
-    setOpenNav(!openNav);
+    ctxApp.setOpenNavContext();
   };
   const autocompleteSx = ctxApp.dataController
     ? { color: "#c30065", transition: "0.2s ease-in-out" }
@@ -26,7 +24,9 @@ const Navbar = () => {
 
   return (
     <div
-      className={`${styles.container} ${openNav ? styles.open : styles.closed}`}
+      className={`${styles.container} ${
+        ctxApp.openNav ? styles.open : styles.closed
+      }`}
     >
       <div className={styles.list}>
         <span>Your Favourites</span>
@@ -44,7 +44,7 @@ const Navbar = () => {
           <HomeIcon onClick={() => navigation("/app")} />
         </div>
         <div className={styles.center}>
-          {openNav ? (
+          {ctxApp.openNav ? (
             <FavoriteIcon
               style={{ color: "#c30065" }}
               onClick={() => handleNavbar()}

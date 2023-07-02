@@ -20,6 +20,8 @@ interface AppContextValue {
   forceReload: boolean;
   setDataControllerContext: () => void;
   dataController: boolean;
+  setOpenNavContext: () => void;
+  openNav: boolean;
 }
 
 const AppContext = createContext<AppContextValue>({
@@ -38,6 +40,8 @@ const AppContext = createContext<AppContextValue>({
   forceReload: false,
   setDataControllerContext: () => {},
   dataController: false,
+  setOpenNavContext: () => {},
+  openNav: false,
 });
 
 export const AppContextProvider = ({ children }: TAppContext) => {
@@ -115,6 +119,11 @@ export const AppContextProvider = ({ children }: TAppContext) => {
   const setDataControllerContext = () => {
     setDataController(!dataController);
   };
+
+  const [openNav, setOpenNav] = useState<boolean>(false);
+  const setOpenNavContext = () => {
+    setOpenNav(!openNav);
+  };
   return (
     <AppContext.Provider
       value={{
@@ -133,6 +142,8 @@ export const AppContextProvider = ({ children }: TAppContext) => {
         forceReload,
         setDataControllerContext,
         dataController,
+        setOpenNavContext,
+        openNav,
       }}
     >
       <div>{children}</div>

@@ -16,6 +16,7 @@ import ThumbUpOffAltIcon from "@mui/icons-material/ThumbUpOffAlt";
 import ThumbDownOffAltIcon from "@mui/icons-material/ThumbDownOffAlt";
 import { BASE_URL } from "../../../config/config";
 import axios from "axios";
+import { motion } from "framer-motion";
 interface ICard {
   streamer: IStreamer;
   i: number;
@@ -72,7 +73,14 @@ const Card: React.FC<ICard> = ({ streamer, i }) => {
 
   return (
     <>
-      <div className={styles.nft} onClick={() => navigate(`/app/streamer/${name}`)}>
+      <motion.div
+        animate={{ opacity: 1 }}
+        initial={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        layout
+        className={styles.nft}
+        onClick={() => navigate(`/app/streamer/${name}`)}
+      >
         <div className={styles.main}>
           <img
             className={styles.tokenImage}
@@ -124,7 +132,7 @@ const Card: React.FC<ICard> = ({ streamer, i }) => {
           </div>
           <hr />
         </div>
-      </div>
+      </motion.div>
     </>
   );
 };

@@ -5,7 +5,7 @@ import Card from "./Card";
 import styles from "./List.module.scss";
 import AppContext from "../../../context/AppContext";
 import Loading from "../../../components/loading/Loading";
-
+import { motion, AnimatePresence } from "framer-motion";
 interface IList {
   data: any;
 }
@@ -14,15 +14,17 @@ const List = ({ data }: IList) => {
   console.log(data);
   return (
     <div className={styles.container}>
-      {ctxApp.loading ? (
+      {/* {ctxApp.loading ? (
         <Loading />
-      ) : (
-        <div className={styles.list_contaner}>
+      ) : ( */}
+      <motion.div layout className={styles.list_contaner}>
+        <AnimatePresence>
           {data?.map((el: IStreamer, i: number) => (
             <Card streamer={el} i={i} key={`${el.name}+${i}`} />
           ))}
-        </div>
-      )}
+        </AnimatePresence>
+      </motion.div>
+      {/* )} */}
     </div>
   );
 };

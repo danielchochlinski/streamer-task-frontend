@@ -32,7 +32,7 @@ const Navbar = () => {
         clearTimeout(timer);
       };
     }
-  }, [ctxApp.highlightFavourite]);
+  }, [ctxApp.highlightFavourite]); // eslint-disable-line
   return (
     <div
       className={`${styles.container} ${

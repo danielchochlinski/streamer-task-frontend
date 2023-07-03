@@ -177,3 +177,9 @@ hr {
   border: none;
   border-bottom: 1px solid rgba(136, 136, 136, 0.3333333333);
 }
+
+@media screen and (max-width: 500px) {
+  .profile {
+    margin: 0 20px 20px 20px;
+  }
+}
